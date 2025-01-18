@@ -40,9 +40,9 @@ public class Usercontroller {
 		
 		//Encoding password
 		
-		String epassword = passwordEncoder.encode(user.getPassword());
-		user.setPassword(epassword);
-		System.out.println("Encoded password set in db");
+//		String epassword = passwordEncoder.encode(user.getPassword());
+//		user.setPassword(epassword);
+//		System.out.println("Encoded password set in db");
 		
 		
 	// saving it to database	
@@ -57,12 +57,21 @@ public class Usercontroller {
 		return "Login";
 	}
 	
+	
+	
+	
+	
+	@GetMapping("home")
+	public String home() {
+		return "HomePage";
+	}
 	@PostMapping("login")
 	public String login(@RequestParam String email,@RequestParam String password,Model model) {
 		
 	UserEntity user =userRepository.findByEmail(email);
 	
-	if(user != null && passwordEncoder.matches(password, user.getPassword())) {
+	if(user != null && user.getPassword().equals(password)) {
+//	if(user != null && passwordEncoder.matches(password, user.getPassword())) {
 		 model.addAttribute("message", "Login successful!");
 		 return "Login";
 	}else {
@@ -84,12 +93,13 @@ public class Usercontroller {
 		if(user == null) {
 			model.addAttribute("email",email);
 			model.addAttribute("error","Invalid Credentials");
-			return "ForgetPassword";	
+			return "HomePage";	
 		}else {
 			String otp = otpGenerator.GeneratOtp(6);
 			userRepository.updateOtpByEmail(email,otp);
 			mailSender.sendMailForOtp(email, otp);
 			System.out.println("Mail sent");
+			model.addAttribute("email", email);
 			model.addAttribute("sucess","Mail Sent");
 		}
 		
@@ -97,14 +107,17 @@ public class Usercontroller {
 		
 	}
 	
+	
+	
 	@PostMapping("resetPassword")
 	public String resetPassword(@RequestParam String email,@RequestParam String otp,@RequestParam String newPassword,Model model) {
 		
 		UserEntity user = userRepository.findByEmail(email);
 		if(user != null) {
 			if(user.getOtp() != null && user.getOtp().equals(otp)) {
-				String newEncodedPassword = passwordEncoder.encode(newPassword);
-				user.setPassword(newEncodedPassword);
+//				String newEncodedPassword = passwordEncoder.encode(newPassword);
+//				user.setPassword(newEncodedPassword);
+				user.setPassword(newPassword);
 				user.setOtp(null);
 				
 				userRepository.save(user);
