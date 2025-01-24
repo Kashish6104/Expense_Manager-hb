@@ -86,6 +86,7 @@
                             <th>Title</th>
                             <th>Amount</th>
                             <th>Description</th>
+                            <th>UserId</th>
                           
                             <th>Action</th>
                         </tr>
@@ -97,6 +98,7 @@
                                 <td class="title">${account.title}</td>
                                 <td class="amount">${account.amount}</td>
                                 <td class="description">${account.description}</td>
+                                 <td class="description">${account.user.userId}</td>
                                
                                 <td>
                                 	<input type="hidden" name="accountId" value="${account.accountId}">

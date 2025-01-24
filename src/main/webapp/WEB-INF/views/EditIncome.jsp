@@ -89,7 +89,7 @@
 </div>
 
 
-		<input type="hidden" name="expenseId" value="${income.incomeId}">
+		<input type="hidden" name="incomeId" value="${income.incomeId}">
         
 
         <!-- Submit Button -->

@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.entity.UserEntity;
-import com.repository.AccountRepository;
 import com.repository.UserRepository;
 import com.service.GenerateRandomValueService;
 import com.service.MailSenderService;
 import com.service.OtpGenerationService;
-import com.service.UserService;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class Usercontroller {
@@ -37,26 +36,16 @@ public class Usercontroller {
 	GenerateRandomValueService generateRandomValue;
 	
 	@Autowired
-    UserService userService;
-
-    @Autowired
-    AccountRepository accountRepository;
+   private HttpSession session;
     
-//    @Autowired
-//    AccountEntity accountentity;
-
+    
+  
 	@GetMapping("signup")
 	public String signup() {
 		return "SignUp";
 	}
 
-//	  @PostMapping("saveuser")
-//	    public String saveUser(UserEntity user, List<AccountEntity> accounts) {
-//	        // Create and associate accounts with the user
-////	        
-//		  	userRepository.save(user);
-//	        return "redirect:/login";
-//	    }
+
 	 @PostMapping("saveuser")
 	    public String saveUser(UserEntity user) {      
 		  	userRepository.save(user);
@@ -81,7 +70,7 @@ public class Usercontroller {
 	    if (optUser.isPresent() && optUser.get().getPassword().equals(password)) {
 	        // Optionally, use passwordEncoder if passwords are encoded
 	        // if (optUser.isPresent() && passwordEncoder.matches(password, optUser.get().getPassword())) {
-	        
+	        session.setAttribute("userId", optUser.get().getUserId());
 	        model.addAttribute("message", "Login successful!");
 	        return "HomePage";  
 	    } else {
