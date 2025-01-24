@@ -100,9 +100,12 @@
         <!-- Forgotpassword (href) -->
         <div class="form-check mb-4">
             <a href="forgotpassword" class="forgot-password">Forgot Password?</a>
-           
-                 
-           
+        </div>
+        
+         <div class="form-check mb-4">
+          
+			<span>${msg}</span>
+         
         </div>
     </form>
 </div>

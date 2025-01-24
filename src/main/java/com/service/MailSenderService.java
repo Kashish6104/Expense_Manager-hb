@@ -22,4 +22,24 @@ public class MailSenderService {
 		
 	}
 	
+	
+public void sendMailForResetPasswordLinkl(String email,String firstName,String token) {
+		
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setTo(email);
+		mail.setSubject("Password Reset Instructions");
+
+		mail.setText("Hello " + firstName + ",\n\n"
+		        + "We received a request to reset your password. Please use the link below to proceed with resetting your password:\n\n"
+		        +"http://localhost:9896/resetpassword?key="+ token + "\n\n"
+		        + "If you did not request this password reset, please ignore this email.\n\n"
+		        + "Best regards,\n"
+		        + "Expense Manager");
+
+		mail.setFrom("kspatel6104@gmail.com");
+		javaMailSender.send(mail);
+
+		
+	}
+	
 }

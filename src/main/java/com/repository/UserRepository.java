@@ -1,5 +1,6 @@
 package com.repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,7 +15,8 @@ import jakarta.transaction.Transactional;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {
-	UserEntity findByEmail(String email);
+	Optional<UserEntity> findByEmail(String email);
+	Optional<UserEntity> findByToken(String token);
 	
 	@Modifying
 	@Transactional

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forget Password</title>
+    <title>Reset Password</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -78,17 +78,28 @@
 </head>
 <body>
 <div class="container">
-    <h2>Forget Password</h2>
-    <form method="post" action="setResetPasswordLink">
-        <!-- Email -->
+    <h2>Reset Password</h2>
+    <form method="post" action="resetpassword">
+    
+    <input type="hidden" name="token" value="${token}"> <!-- token passed from controller -->
+    
+       
+        
+        <!-- Password -->
         <div class="mb-4">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            <label for="password" class="form-label">New Password</label>
+            <input type="password" class="form-control" id="password" name="newPassword" required>
+        </div>
+        
+        <!-- Confirm Password -->
+        <div class="mb-4">
+            <label for="confirmpassword" class="form-label">New Password</label>
+            <input type="password" class="form-control" id="password" name="confirmnewpassword" required>
         </div>
         
         
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary w-100">Confirm Email</button>
+        <button type="submit" class="btn btn-primary w-100">Reset Password</button>
         
         <!-- Forgetpassword (href) -->
         <div class="form-check mb-4">

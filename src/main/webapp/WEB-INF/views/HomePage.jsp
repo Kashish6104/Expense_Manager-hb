@@ -61,6 +61,14 @@
     <a href="addaccount">Add New Account</a>
     <a href="listvendor">List Vendor</a>
     <a href="addvendor">Add New Vendor</a>
+     <a href="listcategory">List Category</a>
+    <a href="addcategory">Add New Category</a>
+    <a href="listsubcategory">List Sub-category</a>
+    <a href="addsubcategory">Add New Sub-category</a>
+     <a href="listexpense">List Expense</a>
+    <a href="addexpense">Add New Expense</a>
+     <a href="listincome">List Income</a>
+    <a href="addincome">Add New Income</a>
    
 
     <!-- Logout Button -->

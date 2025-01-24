@@ -54,16 +54,6 @@
         .btn-primary:hover {
             background-color: #004d40; /* Darker green on hover */
         }
-        .form-check-label {
-            color: #e0e0e0; /* Light gray checkbox label */
-        }
-        .form-check-input:checked {
-            background-color: #76c7c0; /* Turquoise checkbox checked state */
-            border-color: #76c7c0; /* Border color for checked state */
-        }
-        .form-check-input:focus {
-            border-color: #004d40; /* Dark green focus border */
-        }
         .forgot-password {
             color: #76c7c0; /* Soft turquoise for the link */
             text-align: center;
@@ -79,38 +69,35 @@
 <body>
 <div class="container">
     <h2>Reset Password</h2>
-    <form method="post" action="resetPassword">
-    
-    <input type="hidden" name="email" value="${email}"> <!-- Email passed from controller -->
-    
-       <!-- Password -->
-        <div class="mb-4">
-            <label for="otp" class="form-label">Enter OTP</label>
-            <input type="text" class="form-control" id="password" name="otp" required>
-        </div>
-        
-        <!-- Password -->
+    <form method="post" action="resetpassword">
+        <input type="hidden" name="email" value="${email}"> <!-- Email passed from controller -->
+
+        <!-- New Password -->
         <div class="mb-4">
             <label for="password" class="form-label">New Password</label>
             <input type="password" class="form-control" id="password" name="newPassword" required>
         </div>
         
+        <!-- Confirm Password -->
+        <div class="mb-4">
+            <label for="confirmpassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmpassword" name="confirmPassword" required>
+        </div>
         
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary w-100">Reset Password</button>
         
-        <!-- Forgetpassword (href) -->
+        <!-- Login Link -->
         <div class="form-check mb-4">
-            <a href="login" class="forgot-password">login</a>
-         
+            <a href="login" class="forgot-password">Login</a>
         </div>
         
+        <!-- Error/Success Messages -->
         <div class="form-check mb-4">
            <br>
-			<span class="text-danger">${error}</span>
-			<br>
-			<span class="text-danger">${sucess}</span>
-         
+           <span class="text-danger">${error}</span>
+           <br>
+           <span class="text-success">${success}</span>
         </div>
     </form>
 </div>

@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.entity.AccountEntity;
-import com.entity.VendorEntity;
 import com.repository.AccountRepository;
 import com.repository.UserRepository;
 import org.springframework.web.bind.annotation.RequestParam;

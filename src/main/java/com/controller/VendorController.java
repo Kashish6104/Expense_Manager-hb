@@ -28,11 +28,7 @@ public class VendorController {
 	public String addVendor() {
 		return "AddVendor";
 	}
-	
-//	@GetMapping("listvendor")
-//	public String listVendor() {
-//		return "ListVendor";
-//	}
+
 
 	
 	@PostMapping("savevendor")
