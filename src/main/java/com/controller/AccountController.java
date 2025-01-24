@@ -81,6 +81,11 @@ public class AccountController {
 	
 	@PostMapping("updateaccount")
 	public String updateAccount(AccountEntity account){
+		
+
+		UUID userId = (UUID) session.getAttribute("userId");
+		Optional<UserEntity> optUser = userRepo.findById(userId);
+		account.setUser(optUser.get());
 		accountRepo.save(account);
 		return "redirect:/listaccount";
 		

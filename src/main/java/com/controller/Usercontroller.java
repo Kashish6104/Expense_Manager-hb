@@ -66,8 +66,8 @@ public class Usercontroller {
 	public String login(@RequestParam String email, @RequestParam String password, Model model) {
 
 	    Optional<UserEntity> optUser = userRepository.findByEmail(email);
-
-	    if (optUser.isPresent() && optUser.get().getPassword().equals(password)) {
+		
+		    if (optUser.isPresent() && optUser.get().getPassword().equals(password)) {
 	        // Optionally, use passwordEncoder if passwords are encoded
 	        // if (optUser.isPresent() && passwordEncoder.matches(password, optUser.get().getPassword())) {
 	        session.setAttribute("userId", optUser.get().getUserId());
@@ -138,12 +138,14 @@ public class Usercontroller {
 
 	
 	@GetMapping("resetpassword")
-	public String resetpassword(@RequestParam String token) {
+	public String resetpassword(@RequestParam String token,Model model) {
 			System.out.println(token);
-		
+		model.addAttribute("token",token);
 		return "setResetPasswordLink";
 
 	}
+	
+	
 	
 	
 	@PostMapping("resetpassword")

@@ -87,6 +87,7 @@
                             <th>Amount</th>
                             <th>transaction Date</th>
                             <th>Description</th>
+                             <th>Status</th>
                           
                             <th>Action</th>
                         </tr>
@@ -99,7 +100,7 @@
                                 <td class="amount">${income.amount}</td>
                                  <td class="amount">${income.transactionDate}</td>
                                 <td class="description">${income.description}</td>
-                               
+                               	 <td class="description">${income.status}</td>
                                 <td>
                                 	<input type="hidden" name="incomeId" value="${income.incomeId}">
         

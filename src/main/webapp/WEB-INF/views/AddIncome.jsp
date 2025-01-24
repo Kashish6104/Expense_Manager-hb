@@ -85,7 +85,14 @@
              <input type="date" class="form-control" id="description" name="transactionDate" required>
         </div>	
         
-      
+      <div class="mb-4">
+    <label for="category" class="form-label">Status</label>
+    <select name="status" id="category" class="form-control">
+        <option value="COMPLETED">Completed</option>
+        <option value="CANCELLED">Cancelled</option>
+        <option value="PENDING">Pending</option>
+    </select>
+</div>
          
 			
         <!-- Submit Button -->

@@ -23,7 +23,7 @@ public class ExpensesEntity {
 
 	
     public enum Status {
-        PENDING, COMPLETED, FAILED
+        PENDING, COMPLETED, CANCELLED
     }
 	
     @Id

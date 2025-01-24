@@ -89,6 +89,19 @@
 </div>
 
 
+
+
+
+
+<div class="mb-4">
+    <label for="status" class="form-label">Status:</label>
+    <select class="form-control" id="status" name="status" required>
+        <option value="PENDING" ${expense.status == 'PENDING' ? 'selected' : ''}>Pending</option>
+        <option value="COMPLETED" ${expense.status == 'COMPLETED' ? 'selected' : ''}>Completed</option>
+        <option value="CANCELLED" ${expense.status == 'CANCELLED' ? 'selected' : ''}>Cancelled</option>
+    </select>
+</div>
+
 		<input type="hidden" name="expenseId" value="${expense.expenseId}">
         
 

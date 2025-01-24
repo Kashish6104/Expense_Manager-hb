@@ -85,17 +85,19 @@
              <input type="date" class="form-control" id="description" name="transactionDate" required>
         </div>	
         
-         <!-- Drop Down
-         <div class="mb-4">
-            <label for="category" class="form-label">Category</label>
-             	<select name="category" id="description" >
-				  <option value="food">food</option>
-				  <option value="cloths">"cloths"</option>
-				  <option value="automobile">automobile</option>
-				  <option value="household">household</option>
-				</select>
-        </div>	
-         -->
+        
+        
+        <!-- Drop Down -->
+<div class="mb-4">
+    <label for="category" class="form-label">Status</label>
+    <select name="status" id="category" class="form-control">
+        <option value="COMPLETED">Completed</option>
+        <option value="CANCELLED">Cancelled</option>
+        <option value="PENDING">Pending</option>
+    </select>
+</div>
+
+        
 			
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary w-100">Add Expense</button>

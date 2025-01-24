@@ -88,7 +88,14 @@
     <textarea class="form-control" id="description" name="description" rows="3">${income.description}</textarea>
 </div>
 
-
+<div class="mb-4">
+    <label for="category" class="form-label">Status</label>
+    <select name="status" id="status" class="form-control">
+        <option value="COMPLETED" selected>Completed</option>
+        <option value="CANCELLED">Cancelled</option>
+        <option value="PENDING">Pending</option>
+    </select>
+</div>
 		<input type="hidden" name="incomeId" value="${income.incomeId}">
         
 

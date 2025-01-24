@@ -87,6 +87,7 @@
                             <th>Amount</th>
                             <th>transaction Date</th>
                             <th>Description</th>
+                             <th>Status</th>
                           
                             <th>Action</th>
                         </tr>
@@ -99,9 +100,10 @@
                                 <td class="amount">${expense.amount}</td>
                                  <td class="amount">${expense.transactionDate}</td>
                                 <td class="description">${expense.description}</td>
+                                <td class="description">${expense.status}</td>
                                
                                 <td>
-                                	<input type="hidden" name="accountId" value="${expense.expenseId}">
+                                	<input type="hidden" name="expenseId" value="${expense.expenseId}">
         
                                     <a href="deleteexpense?id=${expense.expenseId}" class="btn btn-danger btn-sm">DELETE</a>
                                     <a href="editexpense?id=${expense.expenseId}" class="btn btn-primary btn-sm">EDIT</a>
