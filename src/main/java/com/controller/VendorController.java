@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.entity.UserEntity;
 import com.entity.VendorEntity;
+import com.repository.UserRepository;
 import com.repository.VendorRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 
@@ -22,7 +26,12 @@ public class VendorController {
 	@Autowired
 	VendorRepository vendorRepo;
 	
+	@Autowired
+	UserRepository userRepo;
 	
+	
+	@Autowired
+	private HttpSession session;
 	
 	@GetMapping("addvendor")
 	public String addVendor() {
@@ -33,8 +42,21 @@ public class VendorController {
 	
 	@PostMapping("savevendor")
 	public String saveVendor(VendorEntity vendor) {
-		vendorRepo.save(vendor);
-		return "redirect:/listvendor";
+		
+		UUID userId = (UUID) session.getAttribute("userId");
+		Optional<UserEntity> optUser = userRepo.findById(userId);
+		
+		if(optUser.isPresent()) {
+			vendor.setUser(optUser.get());
+			vendorRepo.save(vendor);
+			return "redirect:/listvendor" ;
+		}else {
+	        
+	        return "redirect:/addvendor?error=userNotFound";
+			
+		}
+		
+		
 	}
 	
 	@GetMapping("listvendor")
@@ -65,7 +87,19 @@ public class VendorController {
 	
 
 	@PostMapping("updatevendor")
-	public String updateVendor(VendorEntity vendor){
+	public String updateVendor(VendorEntity vendor ,Model model){
+		
+UUID userId = (UUID) session.getAttribute("userId");
+		
+		if (userId == null) {
+	        model.addAttribute("error", "User not logged in.");
+	        return "redirect:/login"; 
+	        }
+		
+		Optional<UserEntity> optUser = userRepo.findById(userId);
+		vendor.setUser(optUser.get());
+		
+		
 		vendorRepo.save(vendor);
 		return "redirect:/listvendor";
 		

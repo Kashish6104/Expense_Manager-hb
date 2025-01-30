@@ -31,11 +31,32 @@ public class AccountController {
 	@Autowired
 	private HttpSession session;
 	
+	
 	@GetMapping("addaccount")
 	public String addAccount() {
 		return "AddAccount";
 	}
 
+	
+//	@PostMapping("saveaccount")
+//	public String saveAccount(AccountEntity account) {
+//		
+//		UUID userId = (UUID) session.getAttribute("userId");
+//	    Optional<UserEntity> optUser = userRepo.findById(userId);
+//		
+//		if(optUser.isPresent()) {
+//			UserEntity user = optUser.get();
+//			 user.addAccount(account);
+//			accountRepo.save(account);
+//			return "redirect:/listaccount";
+//		}else {
+//	        
+//	        return "redirect:/addaccount?error=userNotFound";
+//			
+//		}
+//	}
+//	
+	
 	
 	@PostMapping("saveaccount")
 	public String saveAccount(AccountEntity account) {
@@ -53,7 +74,6 @@ public class AccountController {
 			
 		}
 	}
-	
 	@GetMapping("listaccount")
 	public String listAccount(Model model) {
 		List<AccountEntity> accounts = accountRepo.findAll();
@@ -62,9 +82,23 @@ public class AccountController {
 	}
 	
 	
+//	@GetMapping("deleteaccount")
+//	public String deleteAccount(@RequestParam ("id") Integer accountId) {
+//		
+//		 Optional<AccountEntity> optAccount = accountRepo.findById(accountId);
+//		    if (optAccount.isPresent()) {
+//		        AccountEntity account = optAccount.get();
+//		        UserEntity user = account.getUser();
+////		        user.removeAccount(account); 
+//		accountRepo.deleteById(accountId);
+//		return "redirect:/listaccount";
+//	}
+	
+	
 	@GetMapping("deleteaccount")
 	public String deleteAccount(@RequestParam ("id") Integer accountId) {
 		accountRepo.deleteById(accountId);
+//		session.invalidate();
 		return "redirect:/listaccount";
 	}
 	
@@ -79,11 +113,52 @@ public class AccountController {
 		return "EditAccount";
 	}
 	
+//	@PostMapping("updateaccount")
+//	public String updateAccount(AccountEntity account){
+//		UUID userId = (UUID) session.getAttribute("userId");
+//		Optional<UserEntity> optUser = userRepo.findById(userId);
+//		UserEntity user = optUser.get();
+//		 user.addAccount(account);
+//		accountRepo.save(account);
+//		return "redirect:/listaccount";
+//		
+//	}
+	
+//	@PostMapping("updateaccount")
+//	public String updateAccount(AccountEntity account, Model model) {
+//	    UUID userId = (UUID) session.getAttribute("userId");
+//
+//	    if (userId == null) {
+//	        model.addAttribute("error", "User not logged in.");
+//	        return "redirect:/login";  // Redirect to the login page or show an error
+//	    }
+//
+//	    Optional<UserEntity> optUser = userRepo.findById(userId);
+//	    
+//	    if (optUser.isPresent()) {
+//	        UserEntity user = optUser.get();
+//	        user.addAccount(account);
+//	        accountRepo.save(account);
+//	        return "redirect:/listaccount";
+//	    } else {
+//	        model.addAttribute("error", "User not found.");
+//	        return "redirect:/login";  // Handle case when the user is not found
+//	    }
+//	}
+	
+	
+	
 	@PostMapping("updateaccount")
-	public String updateAccount(AccountEntity account){
+	public String updateAccount(AccountEntity account,  Model model){
 		
 
 		UUID userId = (UUID) session.getAttribute("userId");
+		
+		if (userId == null) {
+	        model.addAttribute("error", "User not logged in.");
+	        return "redirect:/login"; 
+	        }
+		
 		Optional<UserEntity> optUser = userRepo.findById(userId);
 		account.setUser(optUser.get());
 		accountRepo.save(account);
@@ -91,6 +166,7 @@ public class AccountController {
 		
 	}
 	
+
 	
-	
+
 }

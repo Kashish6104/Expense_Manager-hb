@@ -80,13 +80,16 @@
                     <thead>
                         <tr>
                             <th>Title</th>
+                             <th>UserId</th>
                             <th>Action</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach items="${categoryList}" var="category">
                             <tr>
                                 <td class="title">${category.title}</td>
+                                 <td class="description">${category.users.userId}</td>
                                 <td>
                                     <!-- Hidden input to pass category ID -->
                                     <input type="hidden" name="categoryId" value="${category.categoryId}">

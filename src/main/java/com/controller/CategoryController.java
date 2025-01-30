@@ -2,6 +2,7 @@ package com.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,13 +12,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.entity.CategoryEntity;
+import com.entity.UserEntity;
 import com.repository.CategoryRepository;
+import com.repository.UserRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class CategoryController {
 
     @Autowired
     CategoryRepository categoryRepo;
+    
+    @Autowired
+	UserRepository userRepo;
+    
+    @Autowired
+    private HttpSession session;
 
     @GetMapping("addcategory")
     public String addCategory() {
@@ -26,8 +37,26 @@ public class CategoryController {
 
     @PostMapping("savecategory")
     public String saveCategory(CategoryEntity category) {
-        categoryRepo.save(category);
-        return "redirect:/listcategory";
+    	
+    	UUID userId = (UUID) session.getAttribute("userId");
+		Optional<UserEntity> optUser = userRepo.findById(userId);
+		if(optUser.isPresent()) {
+			category.setUsers(optUser.get());
+			categoryRepo.save(category);
+			
+			
+	        Optional<CategoryEntity> optCategory = categoryRepo.findById(category.getCategoryId());
+	        session.setAttribute("categoryId", category.getCategoryId());
+
+			System.out.println("Category ID from session: " + category.getCategoryId());
+
+			 return "redirect:/listcategory";
+			 
+		}else {
+	        
+	        return "redirect:/addcategory?error=userNotFound";
+			
+		}       
     }
 
     @GetMapping("/listcategory")
@@ -55,7 +84,17 @@ public class CategoryController {
     }
 
     @PostMapping("updatecategory")
-    public String updateCategory(CategoryEntity category) { 
+    public String updateCategory(CategoryEntity category ,Model model) { 
+    	
+    	UUID userId = (UUID) session.getAttribute("userId");
+		
+		if (userId == null) {
+	        model.addAttribute("error", "User not logged in.");
+	        return "redirect:/login"; 
+	        }
+		
+		Optional<UserEntity> optUser = userRepo.findById(userId);
+		category.setUsers(optUser.get());
         categoryRepo.save(category);
         return "redirect:/listcategory";
     }

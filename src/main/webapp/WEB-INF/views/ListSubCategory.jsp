@@ -80,6 +80,8 @@
                     <thead>
                         <tr>
                             <th>Title</th>
+                            <th>CategoryId</th>
+                            
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -87,11 +89,12 @@
                         <c:forEach items="${subcategoryList}" var="subcategory">
                             <tr>
                                 <td class="title">${subcategory.title}</td>
+                                 <td class="title">${subcategory.category.categoryId}</td>
                                 <td>
                                     <!-- Hidden input to pass vendor ID -->
-                                    <input type="hidden" name="subcategoryId" value="${subcategory.subCategoryId}">
-                                    <a href="deletesubcategory?subcategoryId=${subcategory.subCategoryId}" class="btn btn-danger btn-sm">DELETE</a>
-                                    <a href="editsubcategory?subcategoryId=${subcategory.subCategoryId}" class="btn btn-primary btn-sm">EDIT</a>
+                                    <input type="hidden" name="subCategoryId" value="${subcategory.subCategoryId}">
+                                    <a href="deletesubcategory?id=${subcategory.subCategoryId}" class="btn btn-danger btn-sm">DELETE</a>
+                                    <a href="editsubcategory?id=${subcategory.subCategoryId}" class="btn btn-primary btn-sm">EDIT</a>
                                 </td>
                             </tr>
                         </c:forEach>

@@ -80,6 +80,7 @@
                     <thead>
                         <tr>
                             <th>Title</th>
+                                <th>UserId</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -87,6 +88,8 @@
                         <c:forEach items="${vendors}" var="vendor">
                             <tr>
                                 <td class="title">${vendor.title}</td>
+                                <td class="description">${vendor.user.userId}</td>
+                                
                                 <td>
                                     <!-- Hidden input to pass vendor ID -->
                                     <input type="hidden" name="vendorId" value="${vendor.vendorId}">

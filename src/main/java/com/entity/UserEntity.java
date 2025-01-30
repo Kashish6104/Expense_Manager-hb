@@ -70,5 +70,26 @@ public class UserEntity {
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AccountEntity> accounts;
+    
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<VendorEntity> vendors;
+    
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CategoryEntity> categories;
+    
+    
+    
+    
+    
+//    public void addAccount(AccountEntity account) {
+//        accounts.add(account);
+//        account.setUser(this);
+//    }
+//
+//    public void removeAccount(AccountEntity account) {
+//        accounts.remove(account);
+//        account.setUser(null);
+//    }
 
 }

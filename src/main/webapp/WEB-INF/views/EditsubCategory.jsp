@@ -71,7 +71,7 @@
         </div>
         
         <!-- Hidden input for vendor ID -->
-        <input type="hidden" name="subcategoryId" value="${subcategory.subcategoryId}">
+        <input type="hidden" name="subCategoryId" value="${subcategory.subCategoryId}">
         
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary w-100">Update Sub-Category</button>
